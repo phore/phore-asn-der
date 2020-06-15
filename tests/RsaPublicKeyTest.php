@@ -17,11 +17,11 @@ class RsaPublicKeyTest extends TestCase
         $this->assertEquals((string) $rsaPubKey, phore_file("file://".__DIR__."/mock_secrets/public-key-rsa4096.pem")->get_contents());
     }
 
-    public function testCreateFromPemString()
+    public function testCreateFromPemPrivateKeyString()
     {
         $pemKey = phore_file("file://".__DIR__."/mock_secrets/private-key-rsa4096.pem")->get_contents();
         $rsaPubKey = new RsaPublicKey();
-        $rsaPubKey->createFromPemString($pemKey);
+        $rsaPubKey->createFromPemPrivateKeyString($pemKey);
 
 
         $rsaPubKey->getExponentBase64();

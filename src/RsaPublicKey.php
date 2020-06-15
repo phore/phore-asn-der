@@ -15,7 +15,7 @@ class RsaPublicKey extends PemFormat
         $this->algorithmIdentifier = "300d06092a864886f70d0101010500";
     }
 
-    public function createFromPemString(string $pemKey)
+    public function createFromPemPrivateKeyString(string $pemKey)
     {
         $keyDetails = $this->getKeyDetails($pemKey);
         if($keyDetails['type'] !== OPENSSL_KEYTYPE_RSA) {
