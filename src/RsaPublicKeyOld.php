@@ -4,7 +4,7 @@
 namespace Phore\ASN;
 
 
-class RsaPublicKey extends PemFormat
+class RsaPublicKeyOld extends PemFormat
 {
     private $modulusHex;
     private $exponentHex;
