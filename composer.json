@@ -1,6 +1,6 @@
 {
-  "name": "phore/jwt",
-  "description": "Phore JWT library",
+  "name": "phore/phore-asn-der",
+  "description": "Phore ASN.1-DER library",
   "license": "MIT",
   "homepage": "https://infracamp.org/project/phore",
   "authors": [
