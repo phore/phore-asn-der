@@ -4,6 +4,7 @@
 namespace Phore\ASN\KeyTypes;
 
 
+use InvalidArgumentException;
 use Phore\ASN\KeyFormats\Jwk;
 use Phore\ASN\PkcsKey;
 
@@ -43,7 +44,7 @@ class RsaPrivateKey extends PkcsKey
     public function exportPem(): string
     {
         // TODO: Implement exportPem() method.
-        throw new \Exception("currently not supported");
+        throw new InvalidArgumentException("currently not supported");
     }
 
     public function exportJwk(): string
