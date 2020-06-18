@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "9c43c91edae59c2c8c198b1c1159b4da",
+    "content-hash": "8fd1c0c44468f5a96773d7294ce1ef69",
     "packages": [],
     "packages-dev": [
         {
@@ -219,12 +219,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phore/phore-core.git",
-                "reference": "cbc075e314365e99e2ca614a4f4b39576e0944dc"
+                "reference": "052f22306eb62a9f857b7c6de8263e643e30e222"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phore/phore-core/zipball/cbc075e314365e99e2ca614a4f4b39576e0944dc",
-                "reference": "cbc075e314365e99e2ca614a4f4b39576e0944dc",
+                "url": "https://api.github.com/repos/phore/phore-core/zipball/052f22306eb62a9f857b7c6de8263e643e30e222",
+                "reference": "052f22306eb62a9f857b7c6de8263e643e30e222",
                 "shasum": ""
             },
             "require": {
@@ -262,7 +262,7 @@
             ],
             "description": "Phore core library",
             "homepage": "https://infracamp.org/project/phore",
-            "time": "2020-06-02T18:55:38+00:00"
+            "time": "2020-06-17T15:20:33+00:00"
         },
         {
             "name": "phore/filesystem",
@@ -780,12 +780,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "8eaf8535ac38e0962ce5cfc1dfeaf67c6ba6a648"
+                "reference": "a4baf33f0c2cffb6de207cd4ed95be3bb8193103"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/8eaf8535ac38e0962ce5cfc1dfeaf67c6ba6a648",
-                "reference": "8eaf8535ac38e0962ce5cfc1dfeaf67c6ba6a648",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a4baf33f0c2cffb6de207cd4ed95be3bb8193103",
+                "reference": "a4baf33f0c2cffb6de207cd4ed95be3bb8193103",
                 "shasum": ""
             },
             "require": {
@@ -855,7 +855,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2020-06-17T10:28:33+00:00"
+            "time": "2020-06-18T06:20:24+00:00"
         },
         {
             "name": "psr/http-message",
@@ -1680,7 +1680,9 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=7.2"
+        "php": ">=7.2",
+        "ext-json": "*",
+        "ext-openssl": "*"
     },
     "platform-dev": []
 }
