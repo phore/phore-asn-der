@@ -5,7 +5,8 @@
   "homepage": "https://infracamp.org/project/phore",
   "authors": [
     { "name": "Matthias Leuffen", "email": "m@tth.es" },
-    { "name": "Joe Koshy Alex"}
+    { "name": "Joe Koshy Alex"},
+    { "name": "Michael Schaar"}
   ],
   "repositories": [
   ],
