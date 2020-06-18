@@ -34,9 +34,14 @@ class KeyFactory
         }
     }
 
-    public static function detectFormat(string $keyString) : string {
-        //TODO: Implement some regex format detection
-        return KeyFormat::PEM;
+    public static function detectFormat(string $keyString) : string
+    {
+        if (preg_match("/-{5}BEGIN (?:(RSA|EC) )?(PUBLIC|PRIVATE) KEY-{5}/", $keyString, $matches)) {
+            return KeyFormat::PEM;
+        } elseif (preg_match("/{[\s\S]*['\"]kty['\"]\s*:\s*['\"](EC|RSA|oct)['\"][\s\S]*}/", $keyString, $matches)) {
+            return KeyFormat::JWK;
+        }
+        return "unknown";
     }
 
 }

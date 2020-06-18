@@ -50,6 +50,15 @@ class KeyFactoryTest extends TestCase
 
     }
 
+    public function testDetectFormat()
+    {
+        $jwkString = phore_file(__DIR__."/mock_secrets/public-key-rsa4096.jwk")->get_contents();
+        $this->assertEquals(KeyFormat::JWK, KeyFactory::detectFormat($jwkString));
+
+        $pemString = phore_file(__DIR__."/mock_secrets/public-key-rsa4096.pem")->get_contents();
+        $this->assertEquals(KeyFormat::PEM, KeyFactory::detectFormat($pemString));
+    }
+
 }
 
 
