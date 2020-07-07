@@ -12,6 +12,15 @@ use UnexpectedValueException;
 
 class Jwk implements KeyFormat
 {
+    private $keyType;
+    private $publicKeyUse;
+    private $keyOperations;
+    private $algorithm;
+    private $keyID;
+    private $x509Url;
+    private $x509CertificateChain;
+    private $x509CertificateSHA1Thumbprint;
+    private $x509CertificateSHA256Thumbprint;
 
     public static function getPkcsKey(string $keyString): PkcsKey
     {
