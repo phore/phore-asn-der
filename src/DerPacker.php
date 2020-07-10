@@ -36,8 +36,8 @@ abstract class DerPacker
     }
 
     /**
-     * Packs a bit string. This requires an extra byte, that determines the number of unused bits,
-     * if the length of the bit string is not dividable by 8
+     * Packs a bit string. This requires an extra byte, that determines the number of unused bits in cases
+     * where the length of the bit string is not dividable by 8
      *
      * For example: The bit string '011010001' needs two bytes to be represented - 01101000 10000000 (hex 68 80)
      * Seven bytes at the end of the hex representation are unused, so the unusedBits byte would be '07'
@@ -74,7 +74,7 @@ abstract class DerPacker
             if($int < 128) {
                 $oidBytes .= ($int < 16 ? "0" : "") . dechex($int);
             } else {
-                //other numbers are encoded in 7 bit chunks
+                //other numbers are encoded in 7-bit chunks with the 8th bit set to 1, or to 0 when its the last byte of that number
                 $bitString = decbin($int);
                 $l = strlen($bitString);
                 $bitString = str_pad($bitString, $l+7-$l%7, "0", STR_PAD_LEFT);
@@ -86,9 +86,6 @@ abstract class DerPacker
                     $oidBytes .= dechex(bindec("1".$chunk));
                 }
                 $oidBytes .= $lastByte;
-                echo $oidBytes;
-
-
             }
         }
         return $oidBytes;

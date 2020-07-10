@@ -1,15 +1,17 @@
 <?php
 
+namespace unit;
 
 use Phore\ASN\DerPacker;
+use Phore\ASN\PemFormatHelper;
 use PHPUnit\Framework\TestCase;
 
-class IntegrationTest extends TestCase
+class PemFormatHelperTest extends TestCase
 {
     public function testPackPublicRsa4096PemKey()
     {
-        $keyPath = __DIR__ . "/mockData/public-key-rsa4096.pem";
-        $expectedKey = trim(file_get_contents($keyPath));
+        $keyPath = __DIR__ . "/../mockData/public-key-rsa4096.pem";
+        $expectedKey = file_get_contents($keyPath);
 
         $key = openssl_pkey_get_public($expectedKey);
         $keyDetails = openssl_pkey_get_details($key);
@@ -22,13 +24,9 @@ class IntegrationTest extends TestCase
         $derEncodedKey = DerPacker::packSequence($oid, $derPubKeyBitString);
 
         $label = 'PUBLIC KEY';
-        $header = "-----BEGIN {$label}-----\n";
-        $footer = "-----END {$label}-----\n";
-        $base64Key = base64_encode(hex2bin($derEncodedKey));
-        $data = chunk_split($base64Key,64, "\n");
-        $keyString = trim($header . $data . $footer);
 
-        $expectedKey = trim(file_get_contents($keyPath));
+        $keyString = PemFormatHelper::pemEncodeKey($derEncodedKey, $label);
+
         $this->assertEquals($expectedKey, $keyString);
     }
 
