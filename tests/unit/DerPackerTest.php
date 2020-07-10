@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 
 class DerPackerTest extends TestCase
 {
+
     public function testEncodePositiveSignedInteger()
     {
         $hexInt = "07C3";
@@ -27,5 +28,10 @@ class DerPackerTest extends TestCase
         $this->assertEquals("020300FD0F", $derString);
     }
 
-
+    public function testEncodeOid()
+    {
+        $oid = "1.2.840.113549.1.1.1";
+        $oidHex = DerPacker::packObjectIdentifier($oid);
+        $this->assertEquals("2a864886f70d010101", $oidHex);
+    }
 }

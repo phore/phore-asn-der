@@ -63,6 +63,37 @@ abstract class DerPacker
         return self::getTlv(Asn1DerTypes::SEQUENCE, $sequence);
     }
 
+    public static function packObjectIdentifier(string $oid) : string
+    {
+        $parts = explode(".", $oid);
+        // encode the first two numbers in a single byte
+        $oidBytes = dechex(array_shift($parts)*40+array_shift($parts));
+        // for each subsequent number use single or multi-byte encoding
+        while(($int = array_shift($parts)) !== null) {
+            // number less than 128 will be a single byte
+            if($int < 128) {
+                $oidBytes .= ($int < 16 ? "0" : "") . dechex($int);
+            } else {
+                //other numbers are encoded in 7 bit chunks
+                $bitString = decbin($int);
+                $l = strlen($bitString);
+                $bitString = str_pad($bitString, $l+7-$l%7, "0", STR_PAD_LEFT);
+                $chunks = str_split($bitString, 7);
+                //connect each but the last chunk with a 1 and hex encode each resulting byte
+                $lastInt = bindec("0" . array_pop($chunks));
+                $lastByte = ($lastInt < 16 ? "0" : "") . dechex($lastInt);
+                foreach ($chunks as $chunk) {
+                    $oidBytes .= dechex(bindec("1".$chunk));
+                }
+                $oidBytes .= $lastByte;
+                echo $oidBytes;
+
+
+            }
+        }
+        return $oidBytes;
+    }
+
     /**
      * Get the TLV (Type, Length, Value) representation of the content
      *
